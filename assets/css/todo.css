@@ -1,0 +1,226 @@
+body {
+    font-family:sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, rgba(102,28,132,1) 0%, rgba(86,2,119,1) 33%, rgba(24,18,27,1) 100%, rgba(228,238,234,1) 100%);
+    color: black;
+ }
+ /* rainbow part in header */
+:root {
+  --angle: 45deg;
+  --opacity: 0.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.rainbow {
+  width: 400px;
+  height: 5rem;
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 3rem auto;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-size: 2.8em;
+  --border-size: 0.3rem;
+  border: var(--border-size) solid transparent;
+
+  /* Paint an image in the border */
+  border-image: conic-gradient(
+      from var(--angle),
+      #d53e33 0deg 90deg,
+      #fbb300 90deg 180deg,
+      #377af5 180deg 270deg,
+      #399953 270deg 360deg
+    )
+    1 stretch;
+}
+
+/* Animate when Houdini is available */
+@supports (background: paint(houdini)) {
+  @property --opacity {
+    syntax: "<number>";
+    initial-value: 0.5;
+    inherits: false;
+  }
+
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes opacityChange {
+    to {
+      --opacity: 1;
+    }
+  }
+
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  .rainbow {
+    animation: rotate 4s linear infinite, opacityChange 3s infinite alternate;
+  }
+}
+
+/* style in ul list  call rain*/
+.rain {
+  width: 500px;
+  height: auto;
+  border-radius: 10px;
+  background-image: linear-gradient(
+      to right,
+      rgb(255 255 255 / var(--opacity)),
+      rgb(255 255 255 / var(--opacity))
+    ),
+    conic-gradient(
+      from var(--angle),
+      #d53e33 0deg 90deg,
+      #fbb300 90deg 180deg,
+      #377af5 180deg 270deg,
+      #399953 270deg 360deg
+    );
+}
+
+
+/* Animate when Houdini is available */
+@supports (background: paint(houdini)) {
+  @property --opacity {
+    syntax: "<number>";
+    initial-value: 0.5;
+    inherits: false;
+  }
+
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes opacityChange {
+    to {
+      --opacity: 1;
+    }
+  }
+
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  .rain {
+    animation: rotate 4s linear infinite, opacityChange 3s infinite alternate;
+  }
+}
+/* for header */
+h1 {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 600;
+  font-family: 'Niconne', cursive;
+  color: #e0d6e9;
+  text-shadow: 2px 2px 0px  #957dad,
+}
+
+/* main container */
+#container {
+    width: 500px;
+    margin: 0 auto;
+}
+/* for input */
+.add-task {
+    width: 100%;
+    outline: none;
+    font-size: 15px;
+    padding: 11px;
+    border: 1px solid black;
+    margin-bottom: 3px;
+    border-radius: 10px;
+}
+/* check the total task count */
+#total-tasks {
+    margin-bottom: 20px;
+    font-size: 14px;
+    margin-left: 2px;
+    font-family: monospace;
+    color: white;
+}
+/* for task list */
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul li{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: inherit;
+    align-items: center;
+}
+
+ul li:hover {
+    background: wheat;
+  }
+
+#list input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+
+#list label {
+    position: relative;
+    cursor: pointer;
+}
+
+#list label:before {
+    content:'';
+    background-color: transparent;
+    border: 2px solid black;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  #list input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  #list input:checked + label:before {
+    background: #0079bf;
+  } 
+  #list input:checked + label {
+    text-decoration: line-through;
+  }
+
+  .delete:hover {
+    cursor: pointer;
+  }
