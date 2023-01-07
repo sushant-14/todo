@@ -11,7 +11,7 @@ app.use(express.static('assets'))
 
 
 app.get('/',function(req,res){
-    return res.render('todo',{
+    return res.render('index',{
         title:"to do things"
     })
 });
